@@ -141,3 +141,27 @@ export class BindingDefinition {
         this.defaults = defaults;
     }
 }
+
+export function keyboard(keyCode: number): KeyboardBind {
+    return new KeyboardBind(keyCode);
+}
+
+export function mouse(button: number): MouseButtonBind {
+    return new MouseButtonBind(button);
+}
+
+export function wheelY(sign: number): WheelYBind {
+    return new WheelYBind(sign);
+}
+
+export function gamepadButton(button: number): GamepadButtonBind {
+    return new GamepadButtonBind(button);
+}
+
+export function multi(...bindings: Binding[]): MultiBind {
+    return new MultiBind(bindings);
+}
+
+export function set(...bindings: Binding[]): BindingSet {
+    return new BindingSet(bindings);
+}

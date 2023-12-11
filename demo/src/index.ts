@@ -1,40 +1,44 @@
-import { Keyboard, MultiBind, BindingSet, DOMGamepadInputs, DOMKeyboardInputs, DOMMouseInputs, KeyboardBind, MouseButton, MouseButtonBind, isDown } from '@remvst/client-inputs';
+import { Keyboard, multi, BindingSet, DOMGamepadInputs, DOMKeyboardInputs, DOMMouseInputs, keyboard, MouseButton, mouse, isDown } from '@remvst/client-inputs';
 
-const keyboard = new DOMKeyboardInputs();
-const mouse = new DOMMouseInputs(document.body, { 
+const keyboardInputs = new DOMKeyboardInputs();
+const mouseInputs = new DOMMouseInputs(document.body, { 
     width: window.innerWidth, 
     height: window.innerHeight, 
 });
-const gamepad = new DOMGamepadInputs();
+const gamepadInputs = new DOMGamepadInputs();
 
-keyboard.setup();
-mouse.setup();
-gamepad.setup();
+keyboardInputs.setup();
+mouseInputs.setup();
+gamepadInputs.setup();
 
-const inputs = { keyboard, mouse, gamepad };
+const inputs = { 
+    keyboard: keyboardInputs, 
+    mouse: mouseInputs, 
+    gamepad: gamepadInputs, 
+};
 
 const definitions = new Map([
     ['jump', new BindingSet([
-        new KeyboardBind(Keyboard.SPACE),
-        new MouseButtonBind(MouseButton.LEFT_BUTTON),
+        keyboard(Keyboard.SPACE),
+        mouse(MouseButton.LEFT_BUTTON),
     ])],
     ['left', new BindingSet([
-        new KeyboardBind(Keyboard.LEFT),
+        keyboard(Keyboard.LEFT),
     ])],
     ['right', new BindingSet([
-        new KeyboardBind(Keyboard.RIGHT),
+        keyboard(Keyboard.RIGHT),
     ])],
     ['leftAndRight', new BindingSet([
-        new MultiBind([
-            new KeyboardBind(Keyboard.LEFT),
-            new KeyboardBind(Keyboard.RIGHT),
-        ]),
+        multi(
+            keyboard(Keyboard.LEFT),
+            keyboard(Keyboard.RIGHT),
+        ),
     ])],
     ['inspect', new BindingSet([
-        new MultiBind([
-            new KeyboardBind(Keyboard.COMMAND),
-            new MouseButtonBind(MouseButton.LEFT_BUTTON),
-        ]),
+        multi(
+            keyboard(Keyboard.COMMAND),
+            mouse(MouseButton.LEFT_BUTTON),
+        ),
     ])],
 ])
 
