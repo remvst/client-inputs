@@ -1,13 +1,7 @@
-# mobile-controls
+# client-inputs
 
-A small PIXI.js-based library allowing you to add virtual buttons and joysticks to a touch screen.
-
-## Installation
-
-```sh
-npm install --save @remvst/mobile-controls
-```
+Helper to manage keyboard/mouse/gamepad inputs.
 
 ## Usage
 
-See `demo/src/index.ts` for usage details.
+See `demo/`.
