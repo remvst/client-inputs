@@ -127,21 +127,6 @@ export class BindingSet  {
     }
 }
 
-export class BindingDefinition {
-    constructor(
-        public readonly category: string,
-        public readonly key: string,
-        public readonly label: string,
-        public readonly visible: boolean,
-        public readonly defaults: BindingSet,
-    ) {
-        this.key = key;
-        this.label = label;
-        this.visible = visible;
-        this.defaults = defaults;
-    }
-}
-
 export function keyboard(keyCode: number): KeyboardBind {
     return new KeyboardBind(keyCode);
 }

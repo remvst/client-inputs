@@ -10,5 +10,12 @@ export * from './mouse/dom-mouse-inputs';
 export * from './mouse/mouse-inputs';
 export * from './mouse/mouse';
 
+export * from './serialization/schema';
+export * from './serialization/serialization';
+
+export * from './settings/binding-definition-set';
+export * from './settings/key-binding-settings';
+export * from './settings/binding-definition';
+
 export * from './key-bindings';
 export * from './checks';
