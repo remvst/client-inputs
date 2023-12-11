@@ -16,6 +16,7 @@ export * from './serialization/serialization';
 export * from './settings/binding-definition-set';
 export * from './settings/key-binding-settings';
 export * from './settings/binding-definition';
+export * from './settings/binding-definition-set';
 
 export * from './key-bindings';
 export * from './checks';
