@@ -1,6 +1,6 @@
-import Keyboard from './keyboard';
-import { MouseButton } from './mouse';
-import { GamepadButton } from './gamepad';
+import { Keyboard } from './keyboard/keyboard';
+import { MouseButton } from './mouse/mouse';
+import { GamepadButton } from './gamepad/gamepad';
 
 export interface Binding {
     readonly label: string;

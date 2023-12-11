@@ -1,4 +1,4 @@
-export default class Keyboard {
+export class Keyboard {
     static TAB = 9;
     static ENTER = 13;
     static SHIFT = 16;
