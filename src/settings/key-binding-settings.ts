@@ -7,7 +7,7 @@ export class KeyBindingsSettings {
 
     readonly bindings: Map<string, BindingSet> = new Map();
 
-    constructor(private readonly definitionSet: BindingDefinitionSet) {
+    constructor(readonly definitionSet: BindingDefinitionSet) {
         this.backfillWithDefaults();
     }
 
