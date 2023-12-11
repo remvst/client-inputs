@@ -12,11 +12,11 @@ export class DOMMouseInputs extends MouseInputs {
     }
 
     setup() {
-        this.container.addEventListener('mousedown', this.mouseDown.bind(this), false);
-        this.container.addEventListener('mousemove', this.mouseMove.bind(this), false);
-        this.container.addEventListener('mouseup', this.mouseUp.bind(this), false);
-        this.container.addEventListener('contextmenu', this.contextMenu.bind(this), false);
-        this.container.addEventListener('wheel', this.wheel.bind(this), false);
+        document.body.addEventListener('mousedown', this.mouseDown.bind(this), false);
+        document.body.addEventListener('mousemove', this.mouseMove.bind(this), false);
+        document.body.addEventListener('mouseup', this.mouseUp.bind(this), false);
+        document.body.addEventListener('contextmenu', this.contextMenu.bind(this), false);
+        document.body.addEventListener('wheel', this.wheel.bind(this), false);
     }
 
     private contextMenu(e: MouseEvent) {
