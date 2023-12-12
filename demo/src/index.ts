@@ -1,9 +1,9 @@
-import { serializeBindingSet, KeyBindingsSettings, BindingDefinitionSet, BindingDefinition, Keyboard, multi, set, BindingSet, DOMGamepadInputs, DOMKeyboardInputs, DOMMouseInputs, keyboard, MouseButton, mouse, isDown } from '@remvst/client-inputs';
+import { KeyBindingsSettings, BindingDefinitionSet, BindingDefinition, Keyboard, multi, set, DOMGamepadInputs, DOMKeyboardInputs, DOMMouseInputs, keyboard, MouseButton, mouse, isDown } from '@remvst/client-inputs';
 
 const keyboardInputs = new DOMKeyboardInputs();
-const mouseInputs = new DOMMouseInputs(document.body, { 
-    width: window.innerWidth, 
-    height: window.innerHeight, 
+const mouseInputs = new DOMMouseInputs(document.body, {
+    width: window.innerWidth,
+    height: window.innerHeight,
 });
 const gamepadInputs = new DOMGamepadInputs();
 
@@ -11,10 +11,10 @@ keyboardInputs.setup();
 mouseInputs.setup();
 gamepadInputs.setup();
 
-const inputs = { 
-    keyboard: keyboardInputs, 
-    mouse: mouseInputs, 
-    gamepad: gamepadInputs, 
+const inputs = {
+    keyboard: keyboardInputs,
+    mouse: mouseInputs,
+    gamepad: gamepadInputs,
 };
 
 const definitionSet = new BindingDefinitionSet([
