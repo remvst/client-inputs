@@ -11,6 +11,8 @@ keyboardInputs.setup();
 mouseInputs.setup();
 gamepadInputs.setup();
 
+mouseInputs.onWheel = () => mouseInputs.preventDefault();
+
 const inputs = {
     keyboard: keyboardInputs,
     mouse: mouseInputs,

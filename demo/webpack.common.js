@@ -15,6 +15,11 @@ module.exports = {
             template: './src/index.html',
             chunks: ['main'],
         }),
+        new HtmlWebpackPlugin({
+            filename: 'iframe.html',
+            template: './src/iframe.html',
+            chunks: [],
+        }),
     ],
     output: {
         filename: '[name].bundle.js',
