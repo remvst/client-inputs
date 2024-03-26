@@ -4,6 +4,8 @@ export class DOMMouseInputs extends MouseInputs {
 
     readonly pagePosition = {'x': 0, 'y': 0};
 
+    private lastEvent: Event | null = null;
+
     constructor(
         private readonly container: HTMLElement,
         private readonly size: {width: number, height: number},
@@ -16,14 +18,16 @@ export class DOMMouseInputs extends MouseInputs {
         document.body.addEventListener('mousemove', this.mouseMove.bind(this), false);
         document.body.addEventListener('mouseup', this.mouseUp.bind(this), false);
         document.body.addEventListener('contextmenu', this.contextMenu.bind(this), false);
-        document.body.addEventListener('wheel', this.wheel.bind(this), false);
+        document.body.addEventListener('wheel', this.wheel.bind(this), { passive: false });
     }
 
     private contextMenu(e: MouseEvent) {
+        this.lastEvent = e;
         e.preventDefault();
     }
 
     private mouseDown(e: MouseEvent) {
+        this.lastEvent = e;
         this.setButtonDown(e.button, true);
     }
 
@@ -38,6 +42,7 @@ export class DOMMouseInputs extends MouseInputs {
     }
 
     private mouseMove(e: MouseEvent) {
+        this.lastEvent = e;
         const coords = this.getCoordinates(e);
         this.setMousePosition(
             coords.x,
@@ -48,10 +53,12 @@ export class DOMMouseInputs extends MouseInputs {
     }
 
     private mouseUp(e: MouseEvent) {
+        this.lastEvent = e;
         this.setButtonDown(e.button, false);
     }
 
     private wheel(e: WheelEvent) {
+        this.lastEvent = e;
         this.onWheel(e.deltaX, e.deltaY, e.deltaZ);
     }
 
@@ -65,5 +72,9 @@ export class DOMMouseInputs extends MouseInputs {
             'x': this.size.width * ((e.pageX - rect.left) / rect.width),
             'y': this.size.height * ((e.pageY - rect.top) / rect.height),
         };
+    }
+
+    preventDefault(): void {
+        this.lastEvent?.preventDefault();
     }
 }
