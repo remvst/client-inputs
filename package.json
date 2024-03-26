@@ -5,13 +5,18 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && tsc",
-    "prepublishOnly": "npm i && npm run build"
+    "prepublishOnly": "npm i && npm run build",
+    "prettier:fix": "prettier . --write",
+    "prettier:check": "prettier . --check",
+    "test": "npm run prettier:check"
   },
   "author": "Rémi Vansteelandt",
   "license": "UNLICENSED",
   "dependencies": {
   },
   "devDependencies": {
+    "prettier": "3.1.1",
+    "prettier-plugin-organize-imports": "^3.2.4",
     "typescript": "^5.2.2"
   }
 }
