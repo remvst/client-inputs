@@ -11,8 +11,7 @@ export default class GamepadInputs {
     onAxisUpdated: (axis: number, value: number) => void = () => {};
     onAxisEngaged: (axis: number, value: number) => void = () => {};
 
-    setup() {
-    }
+    setup() {}
 
     isDown(button: number) {
         return this.downButtons.has(button);
@@ -85,4 +84,4 @@ export default class GamepadInputs {
         const force = Math.hypot(x, y);
         return [angle, force];
     }
-};
+}

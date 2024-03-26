@@ -17,11 +17,13 @@ export class GamepadButton {
     static DPAD_RIGHT = 15;
 
     static labelFor(button: number) {
-        const [key] = Object.entries(GamepadButton).find(([_, value]) => value === button) || [];
+        const [key] =
+            Object.entries(GamepadButton).find(
+                ([_, value]) => value === button,
+            ) || [];
         return key || `GAMEPAD_${button}`;
     }
 }
-
 
 export enum GamepadAxis {
     LEFT_X = 0,

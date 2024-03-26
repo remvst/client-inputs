@@ -1,6 +1,6 @@
-import { Keyboard } from './keyboard/keyboard';
-import { MouseButton } from './mouse/mouse';
-import { GamepadButton } from './gamepad/gamepad';
+import { GamepadButton } from "./gamepad/gamepad";
+import { Keyboard } from "./keyboard/keyboard";
+import { MouseButton } from "./mouse/mouse";
 
 export interface Binding {
     readonly label: string;
@@ -9,17 +9,12 @@ export interface Binding {
 }
 
 export class MultiBind implements Binding {
+    label: string = this.bindings.map((b) => b.label).join("+");
 
-    label: string = this.bindings.map((b) => b.label).join('+');
-
-    constructor(
-        readonly bindings: Binding[],
-    ) {
-
-    }
+    constructor(readonly bindings: Binding[]) {}
 
     get isGamepadBinding(): boolean {
-        return !!this.bindings.filter(binding => binding.isGamepadBinding)[0];
+        return !!this.bindings.filter((binding) => binding.isGamepadBinding)[0];
     }
 
     equals(other: Binding): boolean {
@@ -32,7 +27,10 @@ export class MultiBind implements Binding {
         }
 
         for (const binding of this.bindings) {
-            const hasEquivalent = other.bindings.filter(otherBinding => otherBinding.equals(binding)).length > 0;
+            const hasEquivalent =
+                other.bindings.filter((otherBinding) =>
+                    otherBinding.equals(binding),
+                ).length > 0;
             if (!hasEquivalent) {
                 return false;
             }
@@ -79,7 +77,7 @@ export class WheelYBind implements Binding {
 
     constructor(sign: number) {
         this.sign = sign;
-        this.label = sign > 0 ? 'MWHEEL UP' : 'MWHEEL DOWN';
+        this.label = sign > 0 ? "MWHEEL UP" : "MWHEEL DOWN";
     }
 
     equals(other: Binding): boolean {
@@ -98,11 +96,13 @@ export class GamepadButtonBind implements Binding {
     }
 
     equals(other: Binding): boolean {
-        return other instanceof GamepadButtonBind && other.button === this.button;
+        return (
+            other instanceof GamepadButtonBind && other.button === this.button
+        );
     }
 }
 
-export class BindingSet  {
+export class BindingSet {
     bindings: Binding[];
 
     constructor(bindings: Binding[]) {
@@ -119,7 +119,9 @@ export class BindingSet  {
     }
 
     clear(gamepad: boolean) {
-        this.bindings = this.bindings.filter((binding) => binding.isGamepadBinding !== gamepad);
+        this.bindings = this.bindings.filter(
+            (binding) => binding.isGamepadBinding !== gamepad,
+        );
     }
 
     clone(): BindingSet {

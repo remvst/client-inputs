@@ -1,7 +1,6 @@
 import GamepadInputs from "./gamepad-inputs";
 
 export class DOMGamepadInputs extends GamepadInputs {
-
     private animationFrame: number | null = null;
 
     setup() {
@@ -16,7 +15,7 @@ export class DOMGamepadInputs extends GamepadInputs {
 
     private checkButtons() {
         if (!navigator.getGamepads) {
-            console.error('Gamepads not available. Switch to HTTPS');
+            console.error("Gamepads not available. Switch to HTTPS");
             return;
         }
 

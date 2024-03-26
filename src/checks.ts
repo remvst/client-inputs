@@ -1,5 +1,13 @@
 import GamepadInputs from "./gamepad/gamepad-inputs";
-import { Binding, KeyboardBind, MouseButtonBind, GamepadButtonBind, MultiBind, BindingSet, WheelYBind } from "./key-bindings";
+import {
+    Binding,
+    BindingSet,
+    GamepadButtonBind,
+    KeyboardBind,
+    MouseButtonBind,
+    MultiBind,
+    WheelYBind,
+} from "./key-bindings";
 import KeyboardInputs from "./keyboard/keyboard-inputs";
 import MouseInputs from "./mouse/mouse-inputs";
 
@@ -10,7 +18,7 @@ export interface Inputs {
 }
 
 export function isBindingDown(
-    inputs: Inputs, 
+    inputs: Inputs,
     binding: Binding | null,
 ): boolean {
     const { keyboard, mouse, gamepad } = inputs;
@@ -23,7 +31,10 @@ export function isBindingDown(
         return true;
     }
 
-    if (binding instanceof GamepadButtonBind && gamepad.isDown(binding.button)) {
+    if (
+        binding instanceof GamepadButtonBind &&
+        gamepad.isDown(binding.button)
+    ) {
         return true;
     }
 
@@ -54,10 +65,7 @@ export function isBindingDown(
     return false;
 }
 
-export function isDown(
-    inputs: Inputs, 
-    bindingSet: BindingSet | null,
-): boolean {
+export function isDown(inputs: Inputs, bindingSet: BindingSet | null): boolean {
     if (!bindingSet) return false;
 
     for (const binding of bindingSet.bindings) {
@@ -70,7 +78,7 @@ export function isDown(
 }
 
 export function keyCodeMatches(
-    keyCode: number, 
+    keyCode: number,
     bindingSet: BindingSet | null,
 ): boolean {
     if (!bindingSet) return false;
@@ -85,15 +93,18 @@ export function keyCodeMatches(
 }
 
 export function wheelMatches(
-    deltaX: number, 
-    deltaY: number, 
-    deltaZ: number, 
+    deltaX: number,
+    deltaY: number,
+    deltaZ: number,
     bindingSet: BindingSet | null,
 ): boolean {
     if (!bindingSet) return false;
 
     for (const binding of bindingSet.bindings) {
-        if (binding instanceof WheelYBind && Math.sign(deltaY) === binding.sign) {
+        if (
+            binding instanceof WheelYBind &&
+            Math.sign(deltaY) === binding.sign
+        ) {
             return true;
         }
     }
@@ -102,7 +113,7 @@ export function wheelMatches(
 }
 
 export function gamepadButtonMatches(
-    button: number, 
+    button: number,
     bindingSet: BindingSet | null,
 ): boolean {
     if (!bindingSet) return false;

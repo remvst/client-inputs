@@ -8,8 +8,7 @@ export default class KeyboardInputs {
         this.downKeys = new Set();
     }
 
-    setup() {
-    }
+    setup() {}
 
     isDown(key: number) {
         return this.downKeys.has(key);
@@ -39,4 +38,4 @@ export default class KeyboardInputs {
             this.onKeyUp(keyCode);
         }
     }
-};
+}

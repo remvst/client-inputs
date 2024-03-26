@@ -1,6 +1,5 @@
 export default class MouseInputs {
-
-    readonly position = { 'x': 0, 'y': 0 };
+    readonly position = { x: 0, y: 0 };
     private downMap = new Map<number, boolean>();
 
     onMouseDown: (button: number) => void = () => {};
@@ -9,12 +8,12 @@ export default class MouseInputs {
     onMouseRightDown: () => void = () => {};
     onMouseRightUp: () => void = () => {};
 
-    onWheel: (deltaX: number, deltaY: number, deltaZ: number) => void = () => {};
+    onWheel: (deltaX: number, deltaY: number, deltaZ: number) => void =
+        () => {};
 
     onMouseMove: (movementX: number, movementY: number) => void = () => {};
 
-    setup() {
-    }
+    setup() {}
 
     setButtonDown(button: number, down: boolean) {
         if (this.downMap.get(button) === down) {
@@ -30,7 +29,12 @@ export default class MouseInputs {
         }
     }
 
-    setMousePosition(x: number, y: number, movementX: number, movementY: number) {
+    setMousePosition(
+        x: number,
+        y: number,
+        movementX: number,
+        movementY: number,
+    ) {
         this.position.x = x;
         this.position.y = y;
 
@@ -50,4 +54,4 @@ export default class MouseInputs {
     isDown(button: number): boolean {
         return this.downMap.get(button) === true;
     }
-};
+}

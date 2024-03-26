@@ -50,7 +50,9 @@ export class Keyboard {
     static Z = 90;
 
     static labelFor(keyCode: number) {
-        const [key] = Object.entries(Keyboard).find(([_, value]) => value === keyCode) || [];
+        const [key] =
+            Object.entries(Keyboard).find(([_, value]) => value === keyCode) ||
+            [];
         return key || `KEYBOARD_${keyCode}`;
     }
 }

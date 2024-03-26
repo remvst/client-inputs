@@ -1,10 +1,15 @@
 import { BindingSet } from "../key-bindings";
-import { KeyBindingsSettingsJson, BindingSetJson } from "../serialization/schema";
-import { serializeBindingSet, deserializeBindingSet } from "../serialization/serialization";
+import {
+    BindingSetJson,
+    KeyBindingsSettingsJson,
+} from "../serialization/schema";
+import {
+    deserializeBindingSet,
+    serializeBindingSet,
+} from "../serialization/serialization";
 import { BindingDefinitionSet } from "./binding-definition-set";
 
 export class KeyBindingsSettings {
-
     readonly bindings: Map<string, BindingSet> = new Map();
 
     constructor(readonly definitionSet: BindingDefinitionSet) {
@@ -23,10 +28,12 @@ export class KeyBindingsSettings {
         for (const definition of this.definitionSet.definitions) {
             this.binding(definition.key).clear(gamepad);
 
-            const defaults = definition.defaults.clone().bindings.slice(0)
-                .filter(binding => binding.isGamepadBinding === gamepad);
+            const defaults = definition.defaults
+                .clone()
+                .bindings.slice(0)
+                .filter((binding) => binding.isGamepadBinding === gamepad);
             for (const binding of defaults) {
-                this.binding(definition.key).add(binding)
+                this.binding(definition.key).add(binding);
             }
         }
     }
@@ -36,7 +43,7 @@ export class KeyBindingsSettings {
     }
 
     toJson(): KeyBindingsSettingsJson {
-        const bindings: {[key: string]: BindingSetJson} = {};
+        const bindings: { [key: string]: BindingSetJson } = {};
 
         for (const [key, bindingSet] of this.bindings.entries()) {
             bindings[key] = serializeBindingSet(bindingSet);
@@ -54,7 +61,8 @@ export class KeyBindingsSettings {
 
         // Import what's in the JSON
         for (const [key, bindingSetJson] of Object.entries(json.bindings)) {
-            for (const binding of deserializeBindingSet(bindingSetJson).bindings) {
+            for (const binding of deserializeBindingSet(bindingSetJson)
+                .bindings) {
                 this.bindings.get(key)?.add(binding);
             }
         }
