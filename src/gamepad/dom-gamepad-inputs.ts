@@ -15,7 +15,7 @@ export class DOMGamepadInputs extends GamepadInputs {
 
     private checkButtons() {
         if (!navigator.getGamepads) {
-            console.error("Gamepads not available. Switch to HTTPS");
+            console.warn("Gamepads not available. Switch to HTTPS");
             return;
         }
 
