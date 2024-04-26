@@ -5,7 +5,19 @@ export class DOMGamepadInputs extends GamepadInputs {
 
     setup() {
         super.setup();
-        this.checkButtons();
+
+        try {
+            this.checkButtons();
+        } catch (err) {
+            if (err instanceof DOMException && err.name === "SecurityError") {
+                console.warn(
+                    "Gamepad API not available. Most likely due to Permissions-Policy header",
+                    err,
+                );
+            } else {
+                throw err;
+            }
+        }
     }
 
     tearDown() {

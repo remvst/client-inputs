@@ -8,5 +8,8 @@ module.exports = merge(common, {
     devServer: {
         static: "./dist",
         hot: false, // HMR seems to cause issues on FF
+        headers: {
+            "Permissions-Policy": "gamepad=()"
+        },
     },
 });
