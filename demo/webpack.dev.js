@@ -9,7 +9,8 @@ module.exports = merge(common, {
         static: "./dist",
         hot: false, // HMR seems to cause issues on FF
         headers: {
-            "Permissions-Policy": "gamepad=()"
+            // Uncomment to test disabling gamepads
+            // "Permissions-Policy": "gamepad=()",
         },
     },
 });
